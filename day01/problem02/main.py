@@ -1,9 +1,10 @@
-import re
+# import re
+import regex as re
 
 # debug = True
 debug = False
 digit_words = {
-    'one' : 1,
+    'one': 1,
     'two': 2,
     'three': 3,
     'four': 4,
@@ -33,11 +34,13 @@ def get_numeric_value_of_digit_or_word(line: str) -> int:
     14
     >>> get_numeric_value_of_digit_or_word("7pqrstsixteen")
     76
+    >>> get_numeric_value_of_digit_or_word("three98oneightzn")
+    38
     """
     digits = []
-    matches_list = re.findall(rex, line)
-    if debug:
-        print(matches_list)
+    matches_list = re.findall(rex, line, overlapped=True)
+    # if debug:
+    #     print(matches_list)
 
     for match_list in matches_list:
         for match in match_list:
@@ -45,8 +48,8 @@ def get_numeric_value_of_digit_or_word(line: str) -> int:
                 # if debug:
                 #     print(match)
                 digit = digit_words.get(match) if match in digit_words.keys() else match
-                if debug:
-                    print(digit)
+                # if debug:
+                #     print(digit)
 
                 digits.append(digit)
 
